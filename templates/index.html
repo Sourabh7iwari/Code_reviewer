@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Review</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Submit your Code for Review</h1>
+    <form id="codeForm">
+        <textarea name="code" id="code" rows="10" cols="50" placeholder="Paste your code here..."></textarea><br>
+        <button type="submit">Submit Code</button>
+    </form>
+    <div id="loading" style="display:none;">Processing your code... Please wait.</div>
+    <h2>Feedback</h2>
+    <div id="feedback">{{ feedback|safe }}</div>
+
+    <script>
+        document.getElementById('codeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let code = document.getElementById('code').value;
+            let feedbackElement = document.getElementById('feedback');
+            let loadingElement = document.getElementById('loading');
+
+            feedbackElement.innerHTML = '';
+            loadingElement.style.display = 'block';
+
+            fetch('/submit_code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `code=${encodeURIComponent(code)}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                loadingElement.style.display = 'none';
+                feedbackElement.innerHTML = data.feedback;
+            })
+            .catch(error => {
+                loadingElement.style.display = 'none';
+                feedbackElement.innerHTML = '<p>Error: Something went wrong. Please try again.</p>';
+            });
+        });
+    </script>
+</body>
+</html>
