@@ -72,7 +72,7 @@ http://127.0.0.1:5000
 ![Getting feedback of code](static/127.0.0.1_5000_.png)
 
 ## Example screenshots of trnslating the code to different language
-![Translating code to other language](static/ss.png)
+![Translating code to other language](static/ss1.png)
 
 ## 🎉 Contributing
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to create an issue or submit a pull request.
