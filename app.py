@@ -16,10 +16,15 @@ def index():
 
 @app.route('/submit_code', methods=['POST'])
 def submit_code():
-    code = request.form['code']
-    language = request.form['language']
-    # Call the Groq API to get the feedback
-    feedback = get_groq_feedback(code,language)
+    language = request.form['language'] 
+
+    if 'codeFile' in request.files:
+        code_file = request.files['codeFile']
+        code = code_file.read().decode('utf-8')  
+    else:
+        code = request.form['code'] 
+    
+    feedback = get_groq_feedback(code, language)
     return jsonify({'feedback': feedback})
 
 def get_groq_feedback(code,language):

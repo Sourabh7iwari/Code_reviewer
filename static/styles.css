@@ -1,11 +1,129 @@
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body.light-mode {
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
     color: #333;
-    line-height: 1.6;
+}
+
+body.light-mode header {
+    background-color: #007bff;
+    color: white;
+}
+
+body.light-mode .header-content h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+body.light-mode #user-guide,
+body.light-mode #code-example,
+body.light-mode #submit-section,
+body.light-mode #feedback-section {
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode #user-guide h2,
+body.light-mode #code-example h2,
+body.light-mode #submit-section h2,
+body.light-mode #feedback-section h2 {
+    color: #343a40;
+}
+
+body.light-mode #feedback {
+    background-color: #f4f4f4;
+    color: #272822;
+}
+
+body.light-mode pre {
+    background-color: #272822;
+    color: #f8f8f2;
+}
+
+body.light-mode button {
+    background-color: #007bff;
+    color: white;
+}
+
+body.light-mode #submit-section button {
+    background-color: #28a745;
+    color: white;
+}
+
+body.light-mode #submit-section button:hover {
+    background-color: #218838;
+}
+
+body.light-mode footer {
+    background-color: #343a40;
+    color: white;
+}
+
+body.light-mode footer a {
+    color: #ffc107;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode header {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .header-content h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+body.dark-mode #user-guide,
+body.dark-mode #code-example,
+body.dark-mode #submit-section,
+body.dark-mode #feedback-section {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #user-guide h2,
+body.dark-mode #code-example h2,
+body.dark-mode #submit-section h2,
+body.dark-mode #feedback-section h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode #feedback {
+    background-color: #272822;
+    color: #f8f8f2;
+}
+
+body.dark-mode pre {
+    background-color: #333;
+    color: #f8f8f2;
+}
+
+body.dark-mode button {
+    background-color: #e0e0e0;
+    color: #121212;
+}
+
+body.dark-mode #submit-section button {
+    background-color: #28a745;
+    color: white;
+}
+
+body.dark-mode #submit-section button:hover {
+    background-color: #218838;
+}
+
+body.dark-mode footer {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode footer a {
+    color: #ffc107;
 }
 
 h1, h2, p {
@@ -13,15 +131,8 @@ h1, h2, p {
 }
 
 header {
-    background-color: #007bff;
-    color: white;
     padding: 20px 0;
     text-align: center;
-}
-
-.header-content h1 {
-    font-size: 36px;
-    font-weight: bold;
 }
 
 .header-content p {
@@ -30,18 +141,10 @@ header {
 }
 
 #user-guide {
-    background-color: #fff;
     padding: 30px;
     margin: 20px auto;
     max-width: 1000px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-}
-
-#user-guide h2 {
-    font-size: 28px;
-    color: #343a40;
-    margin-bottom: 10px;
 }
 
 #user-guide p {
@@ -59,23 +162,13 @@ header {
 }
 
 #code-example {
-    background-color: #fff;
     padding: 30px;
     margin: 20px auto;
     max-width: 1000px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-#code-example h2 {
-    font-size: 28px;
-    color: #343a40;
-    margin-bottom: 10px;
-}
-
 #code-example pre {
-    background-color: #272822;
-    color: #f8f8f2;
     padding: 15px;
     border-radius: 8px;
     font-family: 'Courier New', monospace;
@@ -84,27 +177,28 @@ header {
 }
 
 #submit-section {
-    background-color: #fff;
     padding: 30px;
     margin: 20px auto;
     max-width: 1000px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-#submit-section h2 {
-    font-size: 28px;
-    color: #343a40;
+#submit-section select{
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
     margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#submit-section select, #submit-section textarea {
+#submit-section textarea {
     width: 90%;
     max-width: 800px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
     border-radius: 8px;
     margin-bottom: 20px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -119,22 +213,15 @@ header {
 #submit-section button {
     padding: 12px 30px;
     font-size: 18px;
-    color: white;
-    background-color: #28a745;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#submit-section button:hover {
-    background-color: #218838;
-}
-
 #loading {
     text-align: center;
     font-size: 16px;
-    color: #007bff;
     margin-top: 20px;
 }
 
@@ -149,25 +236,14 @@ header {
 }
 
 #feedback-section {
-    background-color: #fff;
     padding: 30px;
     margin: 20px auto;
     max-width: 1000px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-}
-
-#feedback-section h2 {
-    font-size: 28px;
-    color: #343a40;
-    margin-bottom: 10px;
 }
 
 #feedback {
     white-space: pre-wrap;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #272822;
-    color: #f8f8f2;
     padding: 15px;
     border-radius: 8px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -176,15 +252,12 @@ header {
 }
 
 footer {
-    background-color: #343a40;
-    color: white;
     padding: 20px;
     text-align: center;
     margin-top: 40px;
 }
 
 footer a {
-    color: #ffc107;
     text-decoration: none;
     margin: 0 10px;
 }
