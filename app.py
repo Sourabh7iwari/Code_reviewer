@@ -17,11 +17,12 @@ def index():
 @app.route('/submit_code', methods=['POST'])
 def submit_code():
     code = request.form['code']
+    language = request.form['language']
     # Call the Groq API to get the feedback
-    feedback = get_groq_feedback(code)
+    feedback = get_groq_feedback(code,language)
     return jsonify({'feedback': feedback})
 
-def get_groq_feedback(code):
+def get_groq_feedback(code,language):
     try:
         system_message = """
 As a detailed code reviewer, thoroughly assess the code below according to the following points:
@@ -36,7 +37,7 @@ As a detailed code reviewer, thoroughly assess the code below according to the f
         chat_completion = client.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_message},
-                {"role": "user", "content": f"Review the following code:\n{code}"}
+                {"role": "user", "content": f"Review the following {language} code:\n{code}"}
             ],
             model="llama3-8b-8192",
         )
