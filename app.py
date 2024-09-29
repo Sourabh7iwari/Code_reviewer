@@ -2,10 +2,11 @@ import os
 from flask import Flask, render_template, request, jsonify
 from groq import Groq
 import markdown
-
+import openai
 
 app = Flask(__name__)
 
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
@@ -14,31 +15,43 @@ client = Groq(
 def index():
     return render_template('index.html')
 
+
 @app.route('/submit_code', methods=['POST'])
 def submit_code():
-    language = request.form['language'] 
+    language = request.form['language']
 
     if 'codeFile' in request.files:
         code_file = request.files['codeFile']
         code = code_file.read().decode('utf-8')  
     else:
         code = request.form['code'] 
-    
+
     feedback = get_groq_feedback(code, language)
     return jsonify({'feedback': feedback})
 
-def get_groq_feedback(code,language):
+@app.route('/convert_code', methods=['POST'])
+def convert_code():
+    source_language = request.form['language']
+    target_language = request.form['targetLanguage']
+    code = request.form['code']
+
+    converted_code = convert_code_to_language(code, source_language, target_language)
+
+    return jsonify({'convertedCode': converted_code})
+
+def get_groq_feedback(code, language):
     try:
         system_message = """
 As a detailed code reviewer, thoroughly assess the code below according to the following points:
     * Use the 🚨 emoji to indicate high-priority suggestions, listed from the most important to the least.
     * Provide a clear and concise summary of the code.
     * Offer actionable feedback on the code's structure, syntax, and best practices.
-    * There should enough gap between each point you  are mentioning.
-    * Lenght of feedback direclty depend on length of code
+    * There should enough gap between each point you are mentioning.
+    * The length of feedback depends directly on the length of code.
     * Whenever possible, provide examples of improvements by showing a 'before and after' version.
     * Calmly walk through your reasoning step-by-step for each suggestion you make.
 """
+
         chat_completion = client.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_message},
@@ -51,8 +64,26 @@ As a detailed code reviewer, thoroughly assess the code below according to the f
         html_feedback = markdown.markdown(feedback)
     except Exception as e:
         html_feedback = f"Error: {str(e)}"
-    
+
     return html_feedback
+
+def convert_code_to_language(code, source_language, target_language):
+    try:
+        system_message = f"""
+You are a code translator. Convert the following {source_language} code to {target_language} while preserving the code functionality:
+"""
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": f"Convert this {source_language} code to {target_language}:\n{code}"}
+            ]
+        )
+
+        translated_code = response.choices[0].message['content']
+        return translated_code
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 if __name__ == '__main__':
     app.run(debug=True)
