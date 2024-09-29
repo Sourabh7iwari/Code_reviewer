@@ -1,6 +1,6 @@
 # 🌟 Code Review Platform 🌟
 
-## 🚀 Overview
+## 🚀 Overview [dev.to](https://dev.to/sourabh7iwari_39/my-post-post-1o74)
 Welcome to the **Code Review Platform**! This web application allows users to submit their code for instant feedback and translation using two powerful AI APIs: **Llama3 Groq** for detailed code reviews and **OpenAI's ChatGPT-3.5 Turbo** for translating code between programming languages. 
 
 Whether you're a student learning to code or a developer looking to improve your skills, this platform is designed to provide valuable insights and assistance with your code. 
@@ -48,6 +48,11 @@ Create a `.env` file in the project root and add your API keys:
 ```
 GROQ_API_KEY=your_groq_api_key
 OPENAI_API_KEY=your_openai_api_key
+```
+in terminal
+```bash
+export GROQ_API_KEY=your_groq_api_key
+export OPENAI_API_KEY=your_openai_api_key
 ```
 
 ### Step 5: Run the Application
