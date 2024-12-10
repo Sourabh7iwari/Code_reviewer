@@ -1,0 +1,25 @@
+{
+    "name": "Python 3 Code Review Platform",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+    "forwardPorts": [
+      5000
+    ],
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "python.defaultInterpreterPath": "/usr/local/bin/python",
+          "python.linting.enabled": true,
+          "python.linting.pylintEnabled": true,
+          "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+          "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+          "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+          "python.linting.flake8Path": "/usr/local/py-utils/bin/flake8"
+        },
+        "extensions": [
+          "ms-python.python",
+          "ms-python.vscode-pylance"
+        ]
+      }
+    },
+    "postCreateCommand": "pip install -r requirements.txt"
+  }
